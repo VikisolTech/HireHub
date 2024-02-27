@@ -16,6 +16,9 @@ const validationSchema = yup.object({
     email: yup.string().email('Invalid Company Domain').required('Company Domain is required'),
 });
 
+
+
+
 const Singin = () => {
     const [isSubmitted, setIsSubmitted] = useState(false); // State variable for managing submission status
 

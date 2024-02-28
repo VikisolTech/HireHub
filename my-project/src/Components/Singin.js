@@ -60,7 +60,7 @@ const Singin = () => {
                         <Typography sx={{ fontSize: "14px" }} >
                             Manatal
                         </Typography>
-                        {!isSubmitted && ( // Display form if not submitted
+                       
                             <>
                                 <Typography component="h1" variant="h5" sx={{ mt: "20px", color: '#1e7dc0', fontWeight: 400 }}>
                                     Sign in with SSO
@@ -98,25 +98,8 @@ const Singin = () => {
                                         </Typography>
                                     </Link>
                             </>
-                        )}
-                        {isSubmitted && ( // Display message if submitted
-                            <>
-                                <Typography component="h1" variant="h5" sx={{ mt: "20px", color: '#1e7dc0', fontWeight: 500 }}>
-                                    ALL DONE!
-                                </Typography>
-
-                                <Typography sx={{ fontSize: '14px', marginTop: "14px" }}>
-                                    We’ve sent you an email with instructions to reset your password.
-                                </Typography>
-                                <Typography sx={{ fontSize: '14px', marginTop: "14px" }}>
-                                    Make sure to check your inbox and your spam folder if you can't find the email.
-                                </Typography>
-                                <Typography sx={{ fontSize: '14px', marginTop: "14px" }}>
-                                    Still can't find it? Please do not hesitate to contact <a href="mailto:support@manatal.com" style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>support@manatal.com</a>
-                                </Typography>
-
-                            </>
-                        )}
+                        
+                       
                     </Box>
                 </Container>
             </Card>

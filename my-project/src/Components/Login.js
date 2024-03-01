@@ -89,7 +89,8 @@ const Login = () => {
                                 helperText={formik.touched.password && formik.errors.password}
                                 sx={{ mt: 2, fontSize: "14px" }}
                             />
-                            <Button
+                             <Link to="/home">
+                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
@@ -97,6 +98,8 @@ const Login = () => {
                             >
                                 Login In
                             </Button>
+                             </Link>
+                          
                         </form>
                         <Link to="/forget">
                             <Typography sx={{ fontSize: '14px', cursor: 'pointer', marginTop: "10px", fontWeight: 600 }}>

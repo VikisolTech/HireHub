@@ -218,6 +218,7 @@ export default function Layout() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+           backgroundColor: '#f1f4f8'
           },
         }}
         variant="persistent"

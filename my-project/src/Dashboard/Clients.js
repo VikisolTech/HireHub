@@ -3,23 +3,32 @@ import Layout from './Layout';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 
 export default function Clients() {
-  const [rows, setRows] = React.useState([
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  ]);
+  const [rows, setRows] = React.useState([]);
+
+  const [open, setOpen] = React.useState(false);
+  const [newRow, setNewRow] = React.useState({ jobCount: '', ClientName: '', age: '' });
 
   const handleAdd = () => {
-    const newRow = { id: rows.length + 1, lastName: '', firstName: '', age: '' };
-    setRows([...rows, newRow]);
+    setOpen(true);
   };
 
-  const handleDelete = (idToDelete) => {
-    const updatedRows = rows.filter((row) => row.id !== idToDelete);
-    setRows(updatedRows);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSave = () => {
+    setRows([...rows, { id: rows.length + 1, ...newRow }]);
+    setNewRow({ jobCount: '', ClientName: '', age: '' });
+    setOpen(false);
   };
 
   const handleEdit = (id, field, value) => {
@@ -29,76 +38,92 @@ export default function Clients() {
     setRows(updatedRows);
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewRow((prevRow) => ({
+      ...prevRow,
+      [name]: value,
+    }));
+  };
+
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130, editable: true },
-    { field: 'lastName', headerName: 'Last name', width: 130, editable: true },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 90,
-      editable: true,
-    },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    },
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      width: 150,
-      sortable: false,
-      renderCell: (params) => (
-        <>
-          <IconButton
-            aria-label="delete"
-            color="secondary"
-            onClick={() => handleDelete(params.row.id)}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </>
-      ),
-    },
+    { field: 'ClientName', headerName: 'Client Name', width: 150, editable: true },
+    { field: 'jobCount', headerName: 'Job Count', width: 150, editable: true },
+    { field: 'ClientIndustry', headerName: 'Client Industry', width: 150, editable: true },
+    { field: 'ClientLocation', headerName: 'Client Location', width: 150, editable: true },
+    { field: 'ClientStage', headerName: 'Client Stage', width: 150, editable: true },
+    { field: 'ClientOwner', headerName: 'Client Owner', width: 150, editable: true },
+    { field: 'ClientTeam', headerName: 'Client Team', width: 150, editable: true },
+    { field: 'ClientCreatedDate', headerName: 'Client Created Date', width: 180, editable: true },
   ];
 
   return (
-    <div style={{ height: 400, width: '100%' ,paddingLeft:"30px",paddingRight:"30px"}}>
+    <>
       <Layout />
-      <Typography sx={{ textAlign: 'center', marginBottom: '16px' }}>
-        Clients
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ marginBottom: '16px' }}
-        onClick={handleAdd}
-      >
-        + Add
-      </Button>
-     
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        pagination
-        paginationMode="server"
-        checkboxSelection
-        disableSelectionOnClick
-        autoHeight
-        style={{ border: '1px solid #ccc', borderRadius: '5px' }}
-        headerStyle={{ padding: '8px' }}
-        onEditCellChangeCommitted={(editCellChangeParams) => {
-          const { id, field, props } = editCellChangeParams;
-          handleEdit(id, field, props.value);
-        }}
-      />
-    </div>
+      <AppBar position="static" sx={{ backgroundColor: '#f1f4f8', mt: "-45px" }}>
+        <Toolbar variant="dense">
+          <Typography sx={{ flexGrow: 1, textAlign: 'center', fontSize: '30px', fontWeight: 'bold', color: "black" }}>
+            Clients
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <div style={{ height: 400, width: '100%', paddingLeft: '30px', paddingRight: '30px',marginTop:"30px"}}>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginBottom: '16px', fontSize: "12px" }}
+          onClick={handleAdd}
+        >
+          <Typography style={{ fontSize: '12px', fontWeight: 'normal', textTransform: 'none', }}>
+            + Create Activity
+          </Typography>
+        </Button>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          pagination
+          paginationMode="server"
+          checkboxSelection
+          disableSelectionOnClick
+          autoHeight
+          style={{ border: '1px solid #ccc', borderRadius: '5px' }}
+          headerStyle={{ padding: '8px' }}
+          onEditCellChangeCommitted={(editCellChangeParams) => {
+            const { id, field, props } = editCellChangeParams;
+            handleEdit(id, field, props.value);
+          }}
+          components={{
+            NoRowsOverlay: () => (
+              <div style={{ width: '100%', textAlign: 'center', padding: '30px' }}>
+                <div style={{ fontSize: "20px", fontWeight: "bold" }}> No clients found</div>
+                <div style={{ fontSize: "14px" }}> No clients match the selected filters. Please modify the filters to try again.</div>
+              </div>
+            ),
+          }}
+        />
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Add New Client</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              name="ClientName"
+              label="Client Name"
+              type="text"
+              value={newRow.ClientName}
+              onChange={handleChange}
+              fullWidth
+            />
+            {/* Add other text fields for the additional columns here */}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleSave}>Save</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </>
   );
 }

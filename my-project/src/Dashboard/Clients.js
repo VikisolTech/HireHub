@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Clients() {
   const [rows, setRows] = React.useState([]);
@@ -75,10 +76,19 @@ export default function Clients() {
           style={{ marginBottom: '16px', fontSize: "12px" }}
           onClick={handleAdd}
         >
+           <AddIcon style={{ marginRight: '8px',width:"20px",height:"20px"}} />
           <Typography style={{ fontSize: '12px', fontWeight: 'normal', textTransform: 'none', }}>
-            + Create Activity
+            Create Activity
           </Typography>
         </Button>
+
+        
+
+
+
+
+
+
         <DataGrid
           rows={rows}
           columns={columns}

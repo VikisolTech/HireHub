@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Layout from './Layout';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
@@ -11,6 +11,14 @@ import TextField from '@mui/material/TextField';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import AddIcon from '@mui/icons-material/Add';
+import ClientNavBar from './ClientNavbar';
+import Box from '@mui/material/Box';
+import CloseIcon from '@mui/icons-material/Close';
+import { IconButton, Tooltip } from '@mui/material';
+import { FormatListBulleted, Dashboard } from '@mui/icons-material';
+import PrivateDropdown from './PrivateDropDown';
+import { Link } from '@mui/material';
+import ImageUpload from './ImageUpload';
 
 export default function Clients() {
   const [rows, setRows] = React.useState([]);
@@ -62,27 +70,21 @@ export default function Clients() {
   return (
     <>
       <Layout />
-      <AppBar position="static" sx={{ backgroundColor: '#f1f4f8', mt: "-45px" }}>
-        <Toolbar variant="dense">
-          <Typography sx={{ flexGrow: 1, textAlign: 'center', fontSize: '30px', fontWeight: 'bold', color: "black" }}>
-            Clients
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <div style={{ height: 400, width: '100%', paddingLeft: '30px', paddingRight: '30px',marginTop:"30px"}}>
+      <ClientNavBar />
+      <div style={{ height: 400, width: '100%', paddingLeft: '30px', paddingRight: '30px', marginTop: "30px" }}>
         <Button
           variant="contained"
           color="primary"
           style={{ marginBottom: '16px', fontSize: "12px" }}
           onClick={handleAdd}
         >
-           <AddIcon style={{ marginRight: '8px',width:"20px",height:"20px"}} />
+          <AddIcon style={{ marginRight: '8px', width: "20px", height: "20px" }} />
           <Typography style={{ fontSize: '12px', fontWeight: 'normal', textTransform: 'none', }}>
-            Create Activity
+            Create Clients
           </Typography>
         </Button>
 
-        
+
 
 
 
@@ -113,9 +115,39 @@ export default function Clients() {
             ),
           }}
         />
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Add New Client</DialogTitle>
-          <DialogContent>
+
+        <Dialog open={open} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
+        >
+          <Box sx={{ paddingTop: "20px" }}>
+            <Box display={{ display: "flex", justifyContent: "space-between" }}>
+              <DialogTitle
+                id="form-dialog-title"
+                sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black' }}
+              >
+                Create Activity
+
+              </DialogTitle>
+              <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
+                <IconButton aria-label="close" onClick={handleClose}>
+                  <CloseIcon />
+                </IconButton>
+
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ paddingLeft: "25px", paddingRight: "25px" }}>
+            <Typography sx={{ color: "#767676", fontSize: '14px' }}>
+              Creating clients will allow you to structure your account by adding jobs, contacts, and guests under each of those clients.
+              <Link
+                href="#"
+                sx={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: 'darkblue' } }}
+              >
+                Learn more
+              </Link>
+            </Typography>
+          </Box>
+          <DialogContent sx={{ display: "flex" }}>
+            <ImageUpload />
             <TextField
               autoFocus
               margin="dense"
@@ -125,14 +157,20 @@ export default function Clients() {
               value={newRow.ClientName}
               onChange={handleChange}
               fullWidth
+              sx={{ marginLeft:"30px"}}
             />
-            {/* Add other text fields for the additional columns here */}
+
+
+
           </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleSave}>Save</Button>
+          <DialogActions sx={{ marginBottom: "10px", padding: "25px" }}>
+            <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+            <Button variant="contained" onClick={handleSave}>Continue</Button>
           </DialogActions>
         </Dialog>
+
+
+
       </div>
     </>
   );

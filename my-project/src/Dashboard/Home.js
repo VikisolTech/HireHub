@@ -416,7 +416,29 @@ export default function Home() {
           </Grid>
           <Grid item xs={6} sx={{ marginTop: "5px", position: 'relative', bottom: '165px' }}>
             <Item>
-              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>MY ACTIVITIES </Typography>
+              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>MY ACTIVITIES 
+              <Button
+                  // variant="outlined"
+                  color="primary"
+                  style={{
+                    marginBottom: '16px',
+                    marginTop: '10px',
+                   paddingRight:"30px"
+                    
+                  }}
+                  onClick={handleClickActivityOpen}
+                >
+                  <AddIcon
+                    style={{
+                      marginRight: '4px',
+                      border: '2px solid #1976d2',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                    }}
+                  />
+                </Button>
+              </Typography>
 
               <Box sx={{ color: 'black', textAlign: 'center', paddingTop: "15px" }}>
                 <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>You don't have any activities planned yet.</Typography>

@@ -13,6 +13,7 @@ import Reports from './Dashboard/Reports';
 import Settings from './Dashboard/Settings';
 import Administration from './Dashboard/Administration';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Board from './Dashboard/Board';
 
 function App() {
   return (
@@ -20,20 +21,20 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Login />} />
-          <Route path='/singin' element={<Singin/>}/>
-          <Route path='/forget' element={<Forgetpassword/>}/>
-          <Route path='/singup' element={<Creataccount/>}/>
-          <Route path='/home' element={<Home/>}/>
-          <Route path='/clients' element={<Clients/>}/>
-          <Route path='/jobs' element={<Jobs/>}/>
-          <Route path='/jobs' element={<Jobs/>}/>
-          <Route path='/candidates' element={<Candidates/>}/>
-          <Route path='/Placements' element={<Placements/>}/>
-          <Route path='/activities' element={<Activities/>}/>
-          <Route path='/inbox' element={<Inbox/>}/>
-          <Route path='/reports' element={<Reports/>}/>
-          <Route path='/settings' element={<Settings/>}/>
-          <Route path='/administration' element={<Administration/>}/>
+          <Route path='/singin' element={<Singin />} />
+          <Route path='/forget' element={<Forgetpassword />} />
+          <Route path='/singup' element={<Creataccount />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/clients' element={<Clients />}/>
+          <Route path='/jobs' element={<Jobs />} />
+          <Route path='/candidates' element={<Candidates />} />
+          <Route path='/Placements' element={<Placements />} />
+          <Route path='/activities' element={<Activities />} />
+          <Route path='/inbox' element={<Inbox />} />
+          <Route path='/reports' element={<Reports />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/administration' element={<Administration />} />
+          <Route path='board' element={<Board />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -39,7 +39,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import WorkIcon from '@mui/icons-material/Work';
 import { Autocomplete, IconButton as MuiIconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+import Description from './Description';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import FileUpload from './FileUpload';
 
 
 
@@ -69,8 +72,11 @@ export default function Home() {
   const [age, setAge] = React.useState('');
   const [assignees, setAssignees] = useState([]);
   const [attendees, setAttendees] = useState([]);
+  const [description, setDescription] = useState('');
 
-
+  const handleDescriptionChange = (value) => {
+    setDescription(value);
+  };
   const handleAttendeeChange = (event, newValue) => {
     setAttendees(newValue);
   };
@@ -97,6 +103,11 @@ export default function Home() {
     setMeetingType(event.target.value);
     // Reset the URL field when the meeting type changes
     setUrl('');
+  };
+  const [selectedImportance, setSelectedImportance] = useState('');
+
+  const handleImportanceChange = (event) => {
+    setSelectedImportance(event.target.value);
   };
 
 
@@ -440,7 +451,7 @@ export default function Home() {
                     maxWidth="sm" // Set the maximum width of the Dialog
                     fullWidth // Make the Dialog take up the full width of its container
                   >
-                    <Box sx={{ padding: "30px", marginLeft: "10px" }}>
+                    <Box sx={{ padding: "20px", marginLeft: "10px" }}>
                       <Box display={{ display: "flex", justifyContent: "space-between" }}>
                         <DialogTitle
                           id="form-dialog-title"
@@ -551,7 +562,7 @@ export default function Home() {
                               value={relatedTo}
                               onChange={handleRelatedToChange}
                               label="Related To"
-                              sx={{ marginTop: "10px" }}
+                              sx={{ marginTop: "16px" }}
                             >
                               <MenuItem value="">
                                 <em>None</em>
@@ -682,7 +693,7 @@ export default function Home() {
 
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <VideocamIcon color="primary" sx={{ marginRight: 1 }} />
-                        <InputLabel id="demo-simple-select-standard-label" sx={{ marginRight: "30px", fontWeight: "bold", overflow: 'unset', color: "black" }}>Online meeting:</InputLabel>
+                        <InputLabel id="demo-simple-select-standard-label" sx={{ marginRight: "25px", fontWeight: "bold", overflow: 'unset', color: "black" }}>Online meeting:</InputLabel>
 
                         <FormControl variant="standard" sx={{ width: "180px" }}>
                           <Select
@@ -691,7 +702,7 @@ export default function Home() {
                             value={meetingType}
                             onChange={handleMeetingTypeChange}
                             label="Related To"
-                            sx={{ marginTop: "10px" }}
+                            sx={{ marginTop: "16px" }}
                           >
                             <MenuItem value="">
                               <em>None</em>
@@ -714,6 +725,49 @@ export default function Home() {
                           />
                         )}
                       </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', marginTop: "10px" }}>
+                        <PriorityHighIcon color="primary" sx={{ marginRight: 1 }} />
+                        <InputLabel id="demo-simple-select-standard-label" sx={{ marginRight: "55px", fontWeight: "bold", overflow: 'unset', color: "black" }}>Importance:</InputLabel>
+
+                        <FormControl variant="standard" sx={{ width: "180px" }}>
+                          <Select
+                            labelId="demo-simple-select-standard-label"
+                            id="demo-simple-select-standard"
+                            value={selectedImportance}
+                            onChange={handleImportanceChange}
+                            label="Select Importance"
+                            sx={{ marginTop: "16px" }}
+                          >
+                            <MenuItem value="">
+                              <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="Low">Low</MenuItem>
+                            <MenuItem value="Normal">Normal</MenuItem>
+                            <MenuItem value="High">High</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '15px' }}>
+                        <Description description={description} handleDescriptionChange={handleDescriptionChange} />
+                      </Box>
+
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', marginTop: "100px" }}>
+                        <AttachFileIcon color="primary" sx={{ marginRight: 1 }} /> {/* Add the AttachFileIcon */}
+                        <InputLabel
+                          id="demo-simple-select-standard-label"
+                          sx={{
+                            marginRight: "25px",
+                            fontWeight: "bold",
+                            overflow: 'unset',
+                            color: "black"
+                          }}
+                        >
+                          Attachments:
+                        </InputLabel>
+                        <FileUpload/>
+                      </Box>
 
 
 
@@ -722,13 +776,16 @@ export default function Home() {
 
 
 
-
-                      <DialogActions>
+                      <Box sx={{ display: "flex", marginTop: "80px", justifyContent: "flex-end" }}>
                         <Button onClick={handleActivityClose} color="primary">Cancel</Button>
                         <Button onClick={handleActivitySubmit} color="primary">Create</Button>
-                      </DialogActions>
+
+                      </Box>
+
                     </Box>
+
                   </Dialog>
+
                 </Box>
 
 

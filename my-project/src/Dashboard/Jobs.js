@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Layout from './Layout';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
@@ -11,23 +11,36 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Card from '@mui/material/Card';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Link } from '@mui/material';
+import ImageUpload from './ImageUpload';
+import ClentDescription from './ClientDescription';
+
+
 
 export default function Jobs() {
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(true); // Change to true
   const [open, setOpen] = React.useState(false);
   const [openForm, setOpenForm] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const [hoveredTemplate, setHoveredTemplate] = React.useState(false);
   const [openTemplateForm, setOpenTemplateForm] = React.useState(false);
+  const [description, setDescription] = useState('');
   const [modalStyle, setModalStyle] = React.useState({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
   });
 
+  const handleToggleOptions = () => {
+    setShowAdvancedOptions(!showAdvancedOptions);
+  };
   const handleMouseEnter = () => {
     setHovered(true);
   };
-
+  const handleDescriptionChange = (value) => {
+    setDescription(value);
+  };
   const handleMouseLeave = () => {
     setHovered(false);
   };
@@ -71,68 +84,68 @@ export default function Jobs() {
   };
 
 
-  
+
   const handleCloseTemplateForm = () => {
     setOpenTemplateForm(false);
   };
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    
+
     // Check if event and event.target are defined
     if (!event || !event.target) {
       console.error("Event or event.target is undefined.");
       return;
     }
-  
+
     // Capture form data
     const formData = {
       id: rows.length + 1, // Generate a unique ID for the new row
       'Position Name': event.target.positionName ? event.target.positionName.value : '',
-     
+
     };
-  
+
     // Add new row to the table
     setRows([...rows, formData]);
-    handleCloseForm(); 
+    handleCloseForm();
   };
-  
+
 
   const handleSubmitTemplateForm = (event) => {
     event.preventDefault();
-    
+
     // Check if event and event.target are defined
     if (!event || !event.target) {
       console.error("Event or event.target is undefined.");
       return;
     }
-  
+
     // Capture form data
     const formData = {
       id: rows.length + 1, // Generate a unique ID for the new row
       'Position Name': event.target.positionName ? event.target.positionName.value : '',
-      
+
     };
-  
+
     // Add new row to the table
     setRows([...rows, formData]);
     handleCloseForm(); // 
   };
-  
+
   const [rows, setRows] = React.useState([]);
-  const [newRow, setNewRow] = React.useState({ 
-    id: '', 
-    'Position Name': '', 
-    'Job Client': '', 
-    'Job Location': '', 
-    'Headcount': '', 
-    'Job Stage': '', 
-    'Minimum Salary': '', 
-    'Maximum Salary': '', 
-    'Job Owner': '', 
-    'Job Team': '', 
-    'Job Status': '', 
-    'Job Created Date': '' 
+  const [newRow, setNewRow] = React.useState({
+    id: '',
+    'Position Name': '',
+    'Job Client': '',
+    'Job Location': '',
+    'Headcount': '',
+    'Job Stage': '',
+    'Minimum Salary': '',
+    'Maximum Salary': '',
+    'Job Owner': '',
+    'Job Team': '',
+    'Job Status': '',
+    'Job Created Date': ''
   });
 
   const handleAdd = () => {
@@ -141,19 +154,19 @@ export default function Jobs() {
 
   const handleSave = () => {
     setRows([...rows, { ...newRow }]);
-    setNewRow({ 
-      id: '', 
-      'Position Name': '', 
-      'Job Client': '', 
-      'Job Location': '', 
-      'Headcount': '', 
-      'Job Stage': '', 
-      'Minimum Salary': '', 
-      'Maximum Salary': '', 
-      'Job Owner': '', 
-      'Job Team': '', 
-      'Job Status': '', 
-      'Job Created Date': '' 
+    setNewRow({
+      id: '',
+      'Position Name': '',
+      'Job Client': '',
+      'Job Location': '',
+      'Headcount': '',
+      'Job Stage': '',
+      'Minimum Salary': '',
+      'Maximum Salary': '',
+      'Job Owner': '',
+      'Job Team': '',
+      'Job Status': '',
+      'Job Created Date': ''
     });
     setOpen(false);
   };
@@ -227,21 +240,21 @@ export default function Jobs() {
           components={{
             NoRowsOverlay: () => (
               <></>
-        //       <div style={{ width: '100%', textAlign: 'center', padding: '30px' }}>
-        //          <div style={{ fontSize: "20px", fontWeight: "bold" }}>You have not created any jobs yet</div>
-        //          <Button
-        //   variant="contained"
-        //   color="primary"
-        //   style={{ marginBottom: '16px', fontSize: '12px' }}
-        //   onClick={handleAdd}
-        // >
-          
-        //   <Typography style={{ fontSize: '12px', fontWeight: 'normal', textTransform: 'none' }}>
-        //     + Create Job
-        //   </Typography>
-        // </Button>
-        //         <div style={{ fontSize: '14px' }}>A Job represents a new job opening, an open position or vacancy listing. Creating a job will allow you to start adding candidates to that job, publish the job onto your career page, post the job to job boards and much more.</div>
-        //       </div>
+              //       <div style={{ width: '100%', textAlign: 'center', padding: '30px' }}>
+              //          <div style={{ fontSize: "20px", fontWeight: "bold" }}>You have not created any jobs yet</div>
+              //          <Button
+              //   variant="contained"
+              //   color="primary"
+              //   style={{ marginBottom: '16px', fontSize: '12px' }}
+              //   onClick={handleAdd}
+              // >
+
+              //   <Typography style={{ fontSize: '12px', fontWeight: 'normal', textTransform: 'none' }}>
+              //     + Create Job
+              //   </Typography>
+              // </Button>
+              //         <div style={{ fontSize: '14px' }}>A Job represents a new job opening, an open position or vacancy listing. Creating a job will allow you to start adding candidates to that job, publish the job onto your career page, post the job to job boards and much more.</div>
+              //       </div>
             ),
           }}
         />
@@ -332,8 +345,7 @@ export default function Jobs() {
               <CloseIcon />
             </IconButton>
             <form onSubmit={handleSubmitForm}>
-              <TextField name="positionName" id="positionName" label="Position Name" variant="outlined" fullWidth margin="normal" />
-              {/* Add other form fields here similarly */}
+
               <Button type="submit" variant="contained" sx={{ mt: 2 }}>Submit</Button>
             </form>
           </Box>
@@ -344,29 +356,102 @@ export default function Jobs() {
           aria-labelledby="modal-template-form-title"
           aria-describedby="modal-template-form-description"
         >
-          <Box sx={{
-            position: 'absolute',
-            ...modalStyle,
-            bgcolor: 'background.paper',
-            border: '2px solid #000',
-            boxShadow: 24,
-            p: 4,
-            maxWidth: '80%',
-            maxHeight: '80%',
-            overflow: 'auto'
-          }}>
-            <Typography id="modal-template-form-title" variant="h6" component="h2">
-              Use Template
-            </Typography>
-            <IconButton aria-label="close" onClick={handleCloseTemplateForm} sx={{ position: 'absolute', right: 8, top: 8 }}>
-              <CloseIcon />
-            </IconButton>
-            <form onSubmit={handleSubmitForm}>
-            <TextField name="positionName" id="positionName" label="Position Name" variant="outlined" fullWidth margin="normal" />
-              {/* Add other form fields here similarly */}
-              <Button type="submit" variant="contained" sx={{ mt: 2 }}>Submit</Button>
-            </form>
-          </Box>
+         
+            <Dialog open={open} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
+            >
+              <Box sx={{ paddingTop: "20px" }}>
+                <Box display={{ display: "flex", justifyContent: "space-between" }}>
+                  <DialogTitle
+                    id="form-dialog-title"
+                    sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black' }}
+                  >
+                    Create Client
+
+                  </DialogTitle>
+                  <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
+                    <IconButton aria-label="close" onClick={handleClose}>
+                      <CloseIcon />
+                    </IconButton>
+
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ paddingLeft: "25px", paddingRight: "25px" }}>
+                <Typography sx={{ color: "#767676", fontSize: '14px' }}>
+                  Creating clients will allow you to structure your account by adding jobs, contacts, and guests under each of those clients.
+                  <Link
+                    href="#"
+                    sx={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: 'darkblue' } }}
+                  >
+                    Learn more
+                  </Link>
+                </Typography>
+              </Box>
+              <DialogContent>
+                <Box sx={{ display: "flex", marginTop: "20px" }}>
+                  <ImageUpload />
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    name="ClientName"
+                    label="Client Name"
+                    type="text"
+                    value={newRow.ClientName}
+                    onChange={handleChange}
+                    fullWidth
+                    sx={{ marginLeft: "30px" }}
+                  />
+                </Box>
+
+                <Box >
+                  {showAdvancedOptions && (
+                    <>
+                      <TextField
+                        label="Add Website"
+                        fullWidth
+                        sx={{ marginTop: "15px" }}
+                      />
+                      <TextField
+                        label="Add Location"
+                        fullWidth
+                        sx={{ marginTop: "15px" }}
+                      />
+                      <ClentDescription
+
+                        description={description} handleDescriptionChange={handleDescriptionChange} />
+                    </>
+                  )}
+
+                </Box>
+
+
+              </DialogContent>
+
+
+              <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
+                <Typography
+                  sx={{
+                    color: '#1976d2',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    paddingLeft: '25px',
+                    '&:hover': {
+                      color: 'darkblue',
+                      textDecoration: 'underline', // Add underline on hover
+                    },
+                  }}
+                  onClick={handleToggleOptions}
+                >
+                  {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
+                </Typography>
+                <Box>
+                  <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
+                  <Button variant="contained" onClick={handleSave}>Continue</Button>
+                </Box>
+
+              </DialogActions>
+            </Dialog>
+         
         </Modal>
       </div>
     </>

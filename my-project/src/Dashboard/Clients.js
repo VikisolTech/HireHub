@@ -19,8 +19,23 @@ import { FormatListBulleted, Dashboard } from '@mui/icons-material';
 import PrivateDropdown from './PrivateDropDown';
 import { Link } from '@mui/material';
 import ImageUpload from './ImageUpload';
+import ClentDescription from './ClientDescription';
+
 
 export default function Clients() {
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(true); // Change to true
+
+  const handleToggleOptions = () => {
+    setShowAdvancedOptions(!showAdvancedOptions);
+  };
+
+  const [description, setDescription] = useState('');
+
+  // Define the handler function to update description state
+  const handleDescriptionChange = (value) => {
+    setDescription(value);
+  };
+
   const [rows, setRows] = React.useState([]);
 
   const [open, setOpen] = React.useState(false);
@@ -146,7 +161,8 @@ export default function Clients() {
               </Link>
             </Typography>
           </Box>
-          <DialogContent sx={{ display: "flex" }}>
+          <DialogContent>
+            <Box  sx={{ display: "flex",marginTop:"20px" }}>
             <ImageUpload />
             <TextField
               autoFocus
@@ -157,15 +173,56 @@ export default function Clients() {
               value={newRow.ClientName}
               onChange={handleChange}
               fullWidth
-              sx={{ marginLeft:"30px"}}
+              sx={{ marginLeft: "30px" }}
             />
+            </Box>
+           
+            <Box >
+              {showAdvancedOptions && (
+                <>
+                  <TextField
+                    label="Add Website"
+                    fullWidth
+                 sx={{marginTop:"15px"}}
+                  />
+                  <TextField
+                    label="Add Location"
+                    fullWidth
+                    sx={{marginTop:"15px"}}
+                  />
+                  <ClentDescription 
+                 
+                  description={description} handleDescriptionChange={handleDescriptionChange} />
+                </>
+              )}
 
+            </Box>
 
 
           </DialogContent>
-          <DialogActions sx={{ marginBottom: "10px", padding: "25px" }}>
-            <Button variant="outlined" onClick={handleClose}>Cancel</Button>
-            <Button variant="contained" onClick={handleSave}>Continue</Button>
+
+
+          <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
+            <Typography
+              sx={{
+                color: '#1976d2',
+                cursor: 'pointer',
+                fontSize: '14px',
+                paddingLeft: '25px',
+                '&:hover': {
+                  color: 'darkblue',
+                  textDecoration: 'underline', // Add underline on hover
+                },
+              }}
+              onClick={handleToggleOptions}
+            >
+              {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
+            </Typography>
+            <Box>
+              <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
+              <Button variant="contained" onClick={handleSave}>Continue</Button>
+            </Box>
+
           </DialogActions>
         </Dialog>
 

@@ -13,34 +13,47 @@ import CloseIcon from '@mui/icons-material/Close';
 import Card from '@mui/material/Card';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { Link } from '@mui/material';
-import ImageUpload from './ImageUpload';
-import ClentDescription from './ClientDescription';
+import FormControl from '@mui/material/FormControl';
 
-
+// Import missing Material-UI components
+import { InputLabel, Select, MenuItem, FormControlLabel, Checkbox, OutlinedInput } from '@mui/material';
+import Description from './Description';
+import ClientDescription from './ClientDescription';
 
 export default function Jobs() {
-  const [showAdvancedOptions, setShowAdvancedOptions] = useState(true); // Change to true
-  const [open, setOpen] = React.useState(false);
-  const [openForm, setOpenForm] = React.useState(false);
-  const [hovered, setHovered] = React.useState(false);
-  const [hoveredTemplate, setHoveredTemplate] = React.useState(false);
-  const [openTemplateForm, setOpenTemplateForm] = React.useState(false);
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [hoveredTemplate, setHoveredTemplate] = useState(false);
+  const [openTemplateForm, setOpenTemplateForm] = useState(false);
   const [description, setDescription] = useState('');
-  const [modalStyle, setModalStyle] = React.useState({
+  const [modalStyle, setModalStyle] = useState({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
   });
 
-  const handleToggleOptions = () => {
-    setShowAdvancedOptions(!showAdvancedOptions);
-  };
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
+  const [personName, setPersonName] = useState([]); // Define state for selected names
+  const [names, setNames] = useState([]); // Define state for list of names
+  const [MenuProps, setMenuProps] = useState({}); // Define state for menu props
+
+
+  // Define the handler function to update description state
   const handleDescriptionChange = (value) => {
     setDescription(value);
   };
+
+  const handleToggleOptions = () => {
+    setShowAdvancedOptions(!showAdvancedOptions);
+  };
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+
+
   const handleMouseLeave = () => {
     setHovered(false);
   };
@@ -77,13 +90,11 @@ export default function Jobs() {
   const handleOpenTemplateForm = () => {
     setOpenTemplateForm(true);
     setModalStyle({
-      top: '20%', // Adjust this value to control how much the modal drops down
+      top: '20%',
       left: '50%',
-      transform: 'translate(-50%, -20%)', // Adjust this value to center the modal horizontally
+      transform: 'translate(-50%, -20%)',
     });
   };
-
-
 
   const handleCloseTemplateForm = () => {
     setOpenTemplateForm(false);
@@ -91,49 +102,30 @@ export default function Jobs() {
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-
-    // Check if event and event.target are defined
-    if (!event || !event.target) {
-      console.error("Event or event.target is undefined.");
-      return;
-    }
-
-    // Capture form data
-    const formData = {
-      id: rows.length + 1, // Generate a unique ID for the new row
-      'Position Name': event.target.positionName ? event.target.positionName.value : '',
-
-    };
-
-    // Add new row to the table
-    setRows([...rows, formData]);
-    handleCloseForm();
+    // Your form submission logic
   };
-
 
   const handleSubmitTemplateForm = (event) => {
     event.preventDefault();
-
-    // Check if event and event.target are defined
-    if (!event || !event.target) {
-      console.error("Event or event.target is undefined.");
-      return;
-    }
-
-    // Capture form data
-    const formData = {
-      id: rows.length + 1, // Generate a unique ID for the new row
-      'Position Name': event.target.positionName ? event.target.positionName.value : '',
-
-    };
-
-    // Add new row to the table
-    setRows([...rows, formData]);
-    handleCloseForm(); // 
+    // Your template form submission logic
   };
 
-  const [rows, setRows] = React.useState([]);
-  const [newRow, setNewRow] = React.useState({
+  function getStyles() {
+    // Your implementation here
+  }
+
+  // Define theme object
+  const theme = {
+    // Your theme properties here
+  };
+
+  // Now you can use getStyles and theme in your code
+  // For example:
+  const styles = getStyles();
+  console.log(theme.color);
+  const [rows, setRows] = useState([]);
+
+  const [newRow, setNewRow] = useState({
     id: '',
     'Position Name': '',
     'Job Client': '',
@@ -260,7 +252,7 @@ export default function Jobs() {
         />
         <Modal
           open={open}
-          onClose={handleClose} // Uncommented onClose prop
+          // onClose={handleClose} 
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
@@ -275,55 +267,58 @@ export default function Jobs() {
             border: '2px solid #000',
             boxShadow: 24,
             p: 4,
-            maxWidth: '80%',
-            maxHeight: '80%',
+            maxWidth: '120%',
+            maxHeight: '120%',
             overflow: 'auto'
           }}>
             <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8 }}>
               <CloseIcon />
             </IconButton>
-           
+
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: '50px' }}>
-         
+
               <Card
-              
+
                 sx={{
                   width: '50%',
-                  // display: 'flex',
                   cursor: 'pointer',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '100px',
+                  height: '180px',
                   transition: 'background-color 0.3s',
                   backgroundColor: hovered ? '#e0e0e0' : 'initial',
                 }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleOpenForm}
-                
+
               >
-                  <Box>anu</Box>
-                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}>Use Template</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: "20px" }}>
+                  <img src="https://cdn3.iconfinder.com/data/icons/file-folders/64/1-20-512.png" width={"100px"} />
+                  <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold', paddingTop: "10px" }}> Use Template</Typography>
+                </Box>
+
               </Card>
               <Card
                 sx={{
                   width: '50%',
                   cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '100px',
+                  height: '180px',
                   ml: '20px',
                   transition: 'background-color 0.3s',
                   backgroundColor: hoveredTemplate ? '#e0e0e0' : 'initial',
                 }}
-               
+
                 onMouseEnter={handleMouseEnterTemplate}
                 onMouseLeave={handleMouseLeaveTemplate}
                 onClick={handleOpenTemplateForm}
-                
+
               >
-                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}> Complete a Form</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginTop: "20px" }}>
+                  <img src="https://cdn3.iconfinder.com/data/icons/file-folders/64/1-50-1024.png" width={"100px"} />
+                  <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold', paddingTop: "10px" }}> Complete a Form</Typography>
+                </Box>
+
+
+
               </Card>
             </Box>
           </Box>
@@ -363,102 +358,273 @@ export default function Jobs() {
           aria-labelledby="modal-template-form-title"
           aria-describedby="modal-template-form-description"
         >
-         
-            <Dialog open={openTemplateForm} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
-            >
-              <Box sx={{ paddingTop: "20px" }}>
-                <Box display={{ display: "flex", justifyContent: "space-between" }}>
-                  <DialogTitle
-                    id="form-dialog-title"
-                    sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black' }}
-                  >
-                    Create Client
 
-                  </DialogTitle>
-                  <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
-                    <IconButton aria-label="close" onClick={handleCloseTemplateForm}>
-                      <CloseIcon />
-                    </IconButton>
+          <Dialog open={openTemplateForm} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
+          >
+            <Box sx={{ paddingTop: "20px" }}>
+              <Box display={{ display: "flex", justifyContent: "space-between" }}>
+                <DialogTitle
+                  id="form-dialog-title"
+                  sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black' }}
+                >
+                  Create Client
 
-                  </Typography>
-                </Box>
-              </Box>
-              <Box sx={{ paddingLeft: "25px", paddingRight: "25px" }}>
-                <Typography sx={{ color: "#767676", fontSize: '14px' }}>
-                  Creating clients will allow you to structure your account by adding jobs, contacts, and guests under each of those clients.
-                  <Link
-                    href="#"
-                    sx={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: 'darkblue' } }}
-                  >
-                    Learn more
-                  </Link>
+                </DialogTitle>
+                <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
+                  <IconButton aria-label="close" onClick={handleCloseTemplateForm}>
+                    <CloseIcon />
+                  </IconButton>
+
                 </Typography>
               </Box>
-              <DialogContent>
-                <Box sx={{ display: "flex", marginTop: "20px" }}>
-                  <ImageUpload />
+            </Box>
+            <Box sx={{ paddingLeft: "25px", paddingRight: "25px" }}>
+              <Typography sx={{ color: "#767676", fontSize: '14px' }}>
+                Creating clients will allow you to structure your account by adding jobs, contacts, and guests under each of those clients.
+                <Link
+                  href="#"
+                  sx={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: 'darkblue' } }}
+                >
+                  Learn more
+                </Link>
+              </Typography>
+            </Box>
+            <DialogContent>
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="PositionName"
+                  label="Position Name"
+                  type="text"
+                  value={newRow.ClientName}
+                  onChange={handleChange}
+                  fullWidth
+
+                />
+              </Box>
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-multiple-name-label">Select Client</InputLabel>
+                  <Select
+
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+                    style={{ width: '100%' }} // Apply styles to make the Select component full width
+                  >
+                    {names.map((name) => (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, theme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Box>
+
+
+
+
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-multiple-name-label">Job Pipeline</InputLabel>
+                  <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, theme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+
+                </FormControl>
+
+              </Box>
+
+
+
+
+
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="Add location"
+                  label="Add Location"
+                  type="text"
+                  value={newRow.ClientName}
+                  onChange={handleChange}
+                  fullWidth
+
+                />
+                <Box sx={{ marginLeft: "10px" }}>
+                  <FormControlLabel control={<Checkbox defaultChecked />} label="Remote" />
+                </Box>
+              </Box>
+
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="HeadCount"
+                  label="Head count"
+                  type="text"
+                  value={newRow.ClientName}
+                  onChange={handleChange}
+                  fullWidth
+
+                />
+              </Box>
+
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="ContactDeatials"
+                  label="Contanct Deatails"
+                  type="text"
+                  value={newRow.ClientName}
+                  onChange={handleChange}
+                  fullWidth
+
+                />
+              </Box>
+
+
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="Add Minium sarliry"
+                  label="Add Minium sarliry"
+                  type="text"
+                  value={newRow.ClientName}
+                  onChange={handleChange}
+                  fullWidth
+
+                />
+                <Box>-</Box>
+                <Box sx={{ marginLeft: "10px" }}>
                   <TextField
                     autoFocus
                     margin="dense"
-                    name="ClientName"
-                    label="Client Name"
+                    name="Add MAXIUM SARLary"
+                    label="Add MAXIUM SARLary"
                     type="text"
                     value={newRow.ClientName}
                     onChange={handleChange}
                     fullWidth
-                    sx={{ marginLeft: "30px" }}
+
                   />
-                </Box>
 
-                <Box >
-                  {showAdvancedOptions && (
-                    <>
-                      <TextField
-                        label="Add Website"
-                        fullWidth
-                        sx={{ marginTop: "15px" }}
-                      />
-                      <TextField
-                        label="Add Location"
-                        fullWidth
-                        sx={{ marginTop: "15px" }}
-                      />
-                      <ClentDescription
-
-                        description={description} handleDescriptionChange={handleDescriptionChange} />
-                    </>
-                  )}
 
                 </Box>
 
 
-              </DialogContent>
+              </Box>
 
 
-              <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
-                <Typography
-                  sx={{
-                    color: '#1976d2',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    paddingLeft: '25px',
-                    '&:hover': {
-                      color: 'darkblue',
-                      textDecoration: 'underline', // Add underline on hover
-                    },
-                  }}
-                  onClick={handleToggleOptions}
-                >
-                  {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
-                </Typography>
-                <Box>
-                  <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleCloseTemplateForm}>Cancel</Button>
-                  <Button variant="contained" onClick={handleSave}>Continue</Button>
-                </Box>
 
-              </DialogActions>
-            </Dialog>
-         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <Box sx={{ display: "flex", marginTop: "20px" }}>
+
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  name="Currency"
+                  label="Currency"
+                  type="text"
+                  value={newRow.ClientName}
+                  onChange={handleChange}
+                  width={"50%"}
+
+                />
+                <FormControl fullWidth>
+                  <InputLabel id="demo-multiple-name-label">Select Frequency</InputLabel>
+                  <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+                   
+                  >
+                    {names.map((name) => (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, theme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+
+              </Box>
+
+
+
+              <Box>
+                <ClientDescription description={description} handleDescriptionChange={handleDescriptionChange} />
+              </Box>
+
+            </DialogContent>
+
+
+            <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
+
+              <Box>
+                <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleCloseTemplateForm}>Cancel</Button>
+                <Button variant="contained" onClick={handleSave}>Continue</Button>
+              </Box>
+
+            </DialogActions>
+          </Dialog>
+
         </Modal>
       </div>
     </>

@@ -142,7 +142,7 @@ export default function Candidates() {
                 cursor: 'pointer',
                 alignItems: "center",
                 justifyContent: "center",
-                height: "155px",
+                height: "170px",
                 transition: 'background-color 0.3s',
                 backgroundColor: hoveredCard === "form" ? '#e0e0e0' : 'initial',
               }}
@@ -150,7 +150,10 @@ export default function Candidates() {
               onMouseLeave={handleMouseLeave}
               onClick={handleOpenForm}
             >
-              <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: "bold" }}>Complete a Form</Typography>
+               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',marginTop:"20px" }}>
+                  <img src="https://cdn3.iconfinder.com/data/icons/file-folders/64/1-50-1024.png" width={"100px"} />
+                  <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold',paddingTop:"10px",paddingBottom:"10px" }}> Complete a Form</Typography>
+                </Box>
             </Card>
 
             <Card
@@ -160,7 +163,7 @@ export default function Candidates() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                height: "155px",
+                height: "170px",
                 ml: "20px",
                 transition: 'background-color 0.3s',
                 backgroundColor: hoveredCard === "template" ? '#e0e0e0' : 'initial',
@@ -169,7 +172,10 @@ export default function Candidates() {
               onMouseLeave={handleMouseLeave}
               onClick={handleOpenTemplateForm}
             >
-              <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: "bold" }}>Use Template</Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',marginTop:"20px" }}>
+                  <img src="https://www.pngkey.com/png/detail/511-5115473_large-size-of-resume-icon-png-download-free.png" width={"70px"} />
+                  <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold',paddingTop:"10px",paddingBottom:"10px" }}> Upload Resume</Typography>
+                </Box>
             </Card>
           </Box>
 
@@ -181,7 +187,7 @@ export default function Candidates() {
                 cursor: 'pointer',
                 alignItems: "center",
                 justifyContent: "center",
-                height: "155px",
+                height: "170px",
                 transition: 'background-color 0.3s',
                 backgroundColor: hoveredCard === "resumes" ? '#e0e0e0' : 'initial',
               }}
@@ -189,7 +195,11 @@ export default function Candidates() {
               onMouseLeave={handleMouseLeave}
               onClick={handleOpenMultipleResumesForm}
             >
-              <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: "bold" }}>Upload Multiple Resumes</Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',marginTop:"20px" }}>
+                  <img src="https://icon-library.com/images/resume-icon/resume-icon-16.jpg" width={"100px"} />
+                  <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold',paddingTop:"10px",paddingBottom:"10px" }}> Upload Multiple Resumes</Typography>
+                </Box>
+             
             </Card>
 
             <Card
@@ -199,7 +209,7 @@ export default function Candidates() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                height: "155px",
+                height: "170px",
                 ml: "20px",
                 transition: 'background-color 0.3s',
                 backgroundColor: hoveredCard === "import" ? '#e0e0e0' : 'initial',
@@ -208,7 +218,11 @@ export default function Candidates() {
               onMouseLeave={handleMouseLeave}
               onClick={handleOpenTemplateForm}
             >
-              <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: "bold" }}>Import a JSON or CSV file</Typography>
+               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',marginTop:"20px" }}>
+                  <img src="https://cdn.iconscout.com/icon/free/png-256/free-json-file-1-504451.png?f=webp" width={"100px"} />
+                  <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold',paddingTop:"10px",paddingBottom:"10px" }}> Import a JSON or CSV file</Typography>
+                </Box>
+             
             </Card>
           </Box>
         </Box>

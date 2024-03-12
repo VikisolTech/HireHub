@@ -323,7 +323,7 @@ export default function Jobs() {
                 onClick={handleOpenTemplateForm}
                 
               >
-                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}>Complete a Form</Typography>
+                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}> Complete a Form</Typography>
               </Card>
             </Box>
           </Box>

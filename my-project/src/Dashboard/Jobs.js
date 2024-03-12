@@ -282,11 +282,14 @@ export default function Jobs() {
             <IconButton aria-label="close" onClick={handleClose} sx={{ position: 'absolute', right: 8, top: 8 }}>
               <CloseIcon />
             </IconButton>
+           
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: '50px' }}>
+         
               <Card
+              
                 sx={{
                   width: '50%',
-                  display: 'flex',
+                  // display: 'flex',
                   cursor: 'pointer',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -297,8 +300,10 @@ export default function Jobs() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 onClick={handleOpenForm}
+                
               >
-                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}>Complete a Form</Typography>
+                  <Box>anu</Box>
+                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}>Use Template</Typography>
               </Card>
               <Card
                 sx={{
@@ -312,11 +317,13 @@ export default function Jobs() {
                   transition: 'background-color 0.3s',
                   backgroundColor: hoveredTemplate ? '#e0e0e0' : 'initial',
                 }}
+               
                 onMouseEnter={handleMouseEnterTemplate}
                 onMouseLeave={handleMouseLeaveTemplate}
                 onClick={handleOpenTemplateForm}
+                
               >
-                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}>Use Template</Typography>
+                <Typography variant="contained" sx={{ cursor: 'pointer', fontWeight: 'bold' }}>Complete a Form</Typography>
               </Card>
             </Box>
           </Box>
@@ -357,7 +364,7 @@ export default function Jobs() {
           aria-describedby="modal-template-form-description"
         >
          
-            <Dialog open={open} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
+            <Dialog open={openTemplateForm} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
             >
               <Box sx={{ paddingTop: "20px" }}>
                 <Box display={{ display: "flex", justifyContent: "space-between" }}>
@@ -369,7 +376,7 @@ export default function Jobs() {
 
                   </DialogTitle>
                   <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
-                    <IconButton aria-label="close" onClick={handleClose}>
+                    <IconButton aria-label="close" onClick={handleCloseTemplateForm}>
                       <CloseIcon />
                     </IconButton>
 
@@ -445,7 +452,7 @@ export default function Jobs() {
                   {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
                 </Typography>
                 <Box>
-                  <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
+                  <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleCloseTemplateForm}>Cancel</Button>
                   <Button variant="contained" onClick={handleSave}>Continue</Button>
                 </Box>
 

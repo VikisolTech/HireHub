@@ -32,6 +32,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import Search from './SearchBar';
 
 const drawerWidth = 220;
 
@@ -136,6 +137,10 @@ export default function Layout() {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Vikisol
           </Typography>
+
+<Search/>
+
+
           <IconButton
             color="inherit"
             onClick={handleMailClick}

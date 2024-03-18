@@ -22,6 +22,7 @@ import ImageUpload from './ImageUpload';
 import ClentDescription from './ClientDescription';
 
 
+
 export default function Clients() {
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(true); // Change to true
 
@@ -202,7 +203,11 @@ export default function Clients() {
           </DialogContent>
 
 
-          <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
+          <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between",flexDirection: "row-reverse" }}>
+          <Box>
+              <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
+              <Button variant="contained" onClick={handleSave}>Continue</Button>
+            </Box>
             <Typography
               sx={{
                 color: '#1976d2',
@@ -218,10 +223,7 @@ export default function Clients() {
             >
               {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
             </Typography>
-            <Box>
-              <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
-              <Button variant="contained" onClick={handleSave}>Continue</Button>
-            </Box>
+          
 
           </DialogActions>
         </Dialog>

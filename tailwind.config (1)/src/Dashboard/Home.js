@@ -221,9 +221,10 @@ export default function Home() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box sx={{ flexGrow: 1, marginTop: "25px", padding: "20px" }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6}>
+      <Box display={"flex"}>
+        <Box sx={{ marginTop: "25px", padding: "20px" }}>
+
+          <Box item xs={6} sx={{ flexBasis: "50%", }}>
             <Item>
               <Typography sx={{ fontSize: '18px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>NOTIFICATIONS</Typography>
               <Box sx={{ color: 'black', textAlign: 'center', paddingTop: "15px" }}>
@@ -248,103 +249,9 @@ export default function Home() {
                 </Typography>
               </Box>
             </Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item>
-              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>TOP PERFORMERS</Typography>
+          </Box>
 
-              <Box sx={{ color: 'black', textAlign: 'center', paddingTop: "15px" }}>
-                <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>There are no other users created yet.</Typography>
-                <Typography sx={{ color: "#a6a194", fontSize: '14px', mt: "5px" }}>Here you will find the ranking of your team's performance</Typography>
-                <Typography sx={{ color: "#a6a194", fontSize: '14px' }}>based on placements, candidates and jobs.</Typography>
-                <Typography sx={{ color: "#a6a194", fontSize: '14px' }}> Start creating users and build your team. </Typography>
-
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  style={{
-                    marginBottom: '16px',
-                    marginTop: '18px',
-                    borderRadius: '10px',
-                    padding: '8px 16px',
-                  }}
-                  onClick={handleClickOpen}
-                >
-                  <AddIcon
-                    style={{
-                      marginRight: '8px',
-                      border: '2px solid #1976d2',
-                      borderRadius: '50%',
-                      width: '20px',
-                      height: '20px',
-                    }}
-                  />
-                  <Typography style={{ fontSize: '12px', fontWeight: 'bold', textTransform: 'none' }}>Create User</Typography>
-                </Button>
-                <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                  <DialogTitle id="form-dialog-title">Create User</DialogTitle>
-                  <DialogContent>
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="photo"
-                      name="photo"
-                      label="Photo"
-                      type="text"
-                      fullWidth
-                      value={formData.photo}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      margin="dense"
-                      id="firstName"
-                      name="firstName"
-                      label="First Name"
-                      type="text"
-                      fullWidth
-                      value={formData.firstName}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      margin="dense"
-                      id="lastName"
-                      name="lastName"
-                      label="Last Name"
-                      type="text"
-                      fullWidth
-                      value={formData.lastName}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      margin="dense"
-                      id="mobileNumber"
-                      name="mobileNumber"
-                      label="Mobile Number"
-                      type="text"
-                      fullWidth
-                      value={formData.mobileNumber}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      margin="dense"
-                      id="email"
-                      name="email"
-                      label="Email Address"
-                      type="email"
-                      fullWidth
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleClose} color="primary">Cancel</Button>
-                    <Button onClick={handleSubmit} color="primary">Create</Button>
-                  </DialogActions>
-                </Dialog>
-              </Box>
-            </Item>
-          </Grid>
-          <Grid item xs={6} sx={{ marginTop: "5px" }}>
+          <Box item xs={6} sx={{ flexBasis: "50%", marginTop: "25px", }}>
             <Item>
               <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', }}>RECENT ACTIONS</Typography>
               <Box sx={{ color: 'black', marginTop: "15px" }}>
@@ -375,45 +282,20 @@ export default function Home() {
 
 
             </Item>
-          </Grid>
-          <Grid item xs={6} sx={{ marginTop: "5px" }}>
+            
+          </Box>
+
+          <Box item xs={6} sx={{ flexBasis: "50%", marginTop: "25px", }}>
             <Item>
-              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', }}>MY PERFORMANCE</Typography>
-              <Box sx={{ color: 'black', marginTop: "15px" }}>
-                <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}>MY CANDIDATES</Typography>
+              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>MY ACTIVITIES
+                <Button
 
-                <Box sx={{ color: 'black', textAlign: 'center', paddingTop: '15px' }}>
-                  <BasicBars />
-                </Box>
-
-                <Box sx={{ color: 'black', marginTop: "15px" }}>
-                  <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}> My JOBS</Typography>
-                  <Box sx={{ color: 'black', textAlign: 'center', paddingTop: '15px' }}>
-                    <BasicPie />
-                  </Box>
-                </Box>
-
-
-              </Box>
-
-
-
-
-
-
-            </Item>
-          </Grid>
-          <Grid item xs={6} sx={{ marginTop: "5px", position: 'relative', bottom: '165px' }}>
-            <Item>
-              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>MY ACTIVITIES 
-              <Button
-                  // variant="outlined"
                   color="primary"
                   style={{
                     marginBottom: '16px',
                     marginTop: '10px',
-                   paddingRight:"30px"
-                    
+                    paddingRight: "30px"
+
                   }}
                   onClick={handleClickActivityOpen}
                 >
@@ -459,8 +341,8 @@ export default function Home() {
                     open={openactivity}
 
                     aria-labelledby="form-dialog-title"
-                    maxWidth="sm" // Set the maximum width of the Dialog
-                    fullWidth // Make the Dialog take up the full width of its container
+                    maxWidth="sm"
+                    fullWidth
                   >
                     <Box sx={{ padding: "20px", marginLeft: "10px" }}>
                       <Box display={{ display: "flex", justifyContent: "space-between" }}>
@@ -483,7 +365,7 @@ export default function Home() {
                         id="standard-basic"
                         label="Add Title"
                         variant="standard"
-                        sx={{ width: '100%' }} // Set the width of the TextField to 100%
+                        sx={{ width: '100%' }}
                       />
                       <Box sx={{ display: 'flex', gap: 2, marginTop: "15px" }}>
                         <Tooltip title="Call">
@@ -765,7 +647,7 @@ export default function Home() {
 
 
                       <Box sx={{ display: 'flex', alignItems: 'center', marginTop: "100px" }}>
-                        <AttachFileIcon color="primary" sx={{ marginRight: 1 }} /> {/* Add the AttachFileIcon */}
+                        <AttachFileIcon color="primary" sx={{ marginRight: 1 }} />
                         <InputLabel
                           id="demo-simple-select-standard-label"
                           sx={{
@@ -777,15 +659,8 @@ export default function Home() {
                         >
                           Attachments:
                         </InputLabel>
-                        <FileUpload/>
+                        <FileUpload />
                       </Box>
-
-
-
-
-
-
-
 
                       <Box sx={{ display: "flex", marginTop: "80px", justifyContent: "flex-end" }}>
                         <Button onClick={handleActivityClose} color="primary">Cancel</Button>
@@ -802,11 +677,140 @@ export default function Home() {
 
               </Box>
             </Item>
-          </Grid>
+          </Box>
 
 
-        </Grid>
+        </Box>
+
+        <Box sx={{ marginTop: "25px", padding: "20px" }}>
+
+          <Box item xs={6} sx={{ flexBasis: "50%", }}>
+            <Item>
+              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', marginTop: "20px" }}>TOP PERFORMERS</Typography>
+
+              <Box sx={{ color: 'black', textAlign: 'center', paddingTop: "15px" }}>
+                <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>There are no other users created yet.</Typography>
+                <Typography sx={{ color: "#a6a194", fontSize: '14px', mt: "5px" }}>Here you will find the ranking of your team's performance</Typography>
+                <Typography sx={{ color: "#a6a194", fontSize: '14px' }}>based on placements, candidates and jobs.</Typography>
+                <Typography sx={{ color: "#a6a194", fontSize: '14px' }}> Start creating users and build your team. </Typography>
+
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={{
+                    marginBottom: '16px',
+                    marginTop: '18px',
+                    borderRadius: '10px',
+                    padding: '8px 16px',
+                  }}
+                  onClick={handleClickOpen}
+                >
+                  <AddIcon
+                    style={{
+                      marginRight: '8px',
+                      border: '2px solid #1976d2',
+                      borderRadius: '50%',
+                      width: '20px',
+                      height: '20px',
+                    }}
+                  />
+                  <Typography style={{ fontSize: '12px', fontWeight: 'bold', textTransform: 'none' }}>Create User</Typography>
+                </Button>
+                <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                  <DialogTitle id="form-dialog-title">Create User</DialogTitle>
+                  <DialogContent>
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="photo"
+                      name="photo"
+                      label="Photo"
+                      type="text"
+                      fullWidth
+                      value={formData.photo}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="firstName"
+                      name="firstName"
+                      label="First Name"
+                      type="text"
+                      fullWidth
+                      value={formData.firstName}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="lastName"
+                      name="lastName"
+                      label="Last Name"
+                      type="text"
+                      fullWidth
+                      value={formData.lastName}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="mobileNumber"
+                      name="mobileNumber"
+                      label="Mobile Number"
+                      type="text"
+                      fullWidth
+                      value={formData.mobileNumber}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      margin="dense"
+                      id="email"
+                      name="email"
+                      label="Email Address"
+                      type="email"
+                      fullWidth
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="primary">Cancel</Button>
+                    <Button onClick={handleSubmit} color="primary">Create</Button>
+                  </DialogActions>
+                </Dialog>
+              </Box>
+            </Item>
+          </Box>
+          <Box item xs={6} sx={{ flexBasis: "50%", marginTop: "25px", }}>
+            <Item>
+              <Typography sx={{ fontSize: '15px', fontWeight: 'bold', color: '#1976d2', textAlign: 'center', }}>MY PERFORMANCE</Typography>
+              <Box sx={{ color: 'black', marginTop: "15px" }}>
+                <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}>MY CANDIDATES</Typography>
+
+                <Box sx={{ color: 'black', textAlign: 'center', paddingTop: '15px' }}>
+                  <BasicBars />
+                </Box>
+
+                <Box sx={{ color: 'black', marginTop: "15px" }}>
+                  <Typography sx={{ fontSize: '18px', fontWeight: 'bold' }}> My JOBS</Typography>
+                  <Box sx={{ color: 'black', textAlign: 'center', paddingTop: '15px' }}>
+                    <BasicPie />
+                  </Box>
+                </Box>
+
+
+              </Box>
+
+
+
+
+
+
+            </Item>
+          </Box>
+
+        </Box>
+
       </Box>
+
     </>
   );
 }

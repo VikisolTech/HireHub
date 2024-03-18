@@ -14,6 +14,8 @@ import Card from '@mui/material/Card';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { Link } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
+import { NativeSelect } from '@mui/material';
+
 
 // Import missing Material-UI components
 import { InputLabel, Select, MenuItem, FormControlLabel, Checkbox, OutlinedInput } from '@mui/material';
@@ -163,6 +165,9 @@ export default function Jobs() {
     setOpen(false);
   };
 
+  const handleSaves = () => {
+    // Implementation of handleSaves
+  };
   const handleEdit = (id, field, value) => {
     const updatedRows = rows.map((row) =>
       row.id === id ? { ...row, [field]: value } : row
@@ -340,18 +345,97 @@ export default function Jobs() {
             maxHeight: '80%',
             overflow: 'auto'
           }}>
-            <Typography id="modal-form-title" variant="h6" component="h2">
-              Complete Form
-            </Typography>
-            <IconButton aria-label="close" onClick={handleCloseForm} sx={{ position: 'absolute', right: 8, top: 8 }}>
-              <CloseIcon />
-            </IconButton>
-            <form onSubmit={handleSubmitForm}>
+            <Box sx={{ paddingTop: "10px" }}>
+              <Box display={{ display: "flex", justifyContent: "space-between" }}>
+                <DialogTitle
+                  id="form-dialog-title"
+                  sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black' }}
+                >
+                  Create Client
 
-              <Button type="submit" variant="contained" sx={{ mt: 2 }}>Submit</Button>
+                </DialogTitle>
+                <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
+                  <IconButton aria-label="close" onClick={handleCloseForm}>
+                    <CloseIcon />
+                  </IconButton>
+
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ paddingLeft: "50px", paddingRight: "50px", marginTop: "15px" }}>
+              <Box sx={{ backgroundColor: "#f1f4f8" }}>
+                <Typography sx={{ color: "#767676", fontSize: '14px', height: "90px", padding: "20px" }}>
+                  Select a job template from the dropdown menu below. Learn more about job templates in
+                  <Link
+                    href="#"
+                    sx={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: 'darkblue' } }}
+                  >
+                    our documentation
+                  </Link>
+                  or create a new job template
+                  <Link
+                    href="#"
+                    sx={{ color: '#1976d2', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: 'darkblue' } }}
+                  >
+                    here.
+                  </Link>
+                </Typography>
+              </Box>
+
+            </Box>
+            <FormControl sx={{
+              width: "80%",
+              marginTop: "25px",
+              marginLeft: "76px",marginBottom: "20px"
+            }}>
+              <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                Select template
+              </InputLabel>
+              <NativeSelect
+                defaultValue={30}
+                inputProps={{
+                  name: ' Select template',
+                  id: 'uncontrolled-native',
+                }}
+              >
+                <option value={10}>  Sample - Software Engineer</option>
+                <option value={20}>Sample - Sales Manager</option>
+                <option value={30}>Sample - Digital Marketing Manager</option>
+              </NativeSelect>
+            </FormControl>
+            <form onSubmit={handleSubmitForm}>
+              <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between", flexDirection: "row-reverse" }}>
+
+                <Box>
+                  <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleCloseForm}>Cancel</Button>
+                  <Button variant="contained" onClick={handleSaves}>Continue</Button>
+                </Box>
+              </DialogActions>
             </form>
           </Box>
         </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <Modal
           open={openTemplateForm}
           onClose={handleCloseTemplateForm} // Uncommented onClose prop
@@ -406,15 +490,15 @@ export default function Jobs() {
               </Box>
               <Box sx={{ display: "flex", marginTop: "20px" }}>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-multiple-name-label">Select Client</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
                   <Select
 
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
                     multiple
                     value={personName}
                     onChange={handleChange}
-                    input={<OutlinedInput label="Name" />}
+                    input={<OutlinedInput label="Select Client" />}
                     MenuProps={MenuProps}
                     style={{ width: '100%' }} // Apply styles to make the Select component full width
                   >
@@ -432,196 +516,218 @@ export default function Jobs() {
               </Box>
 
 
+              <Box >
+                {showAdvancedOptions && (
+                  <>
+                    <Box sx={{ display: "flex", marginTop: "20px" }}>
+                      <FormControl fullWidth>
+                        <InputLabel id="demo-multiple-name-label">Job Pipeline</InputLabel>
+                        <Select
+                          labelId="demo-multiple-name-label"
+                          id="demo-multiple-name"
+                          multiple
+                          value={personName}
+                          onChange={handleChange}
+                          input={<OutlinedInput label="Job Pipeline" />}
+                          MenuProps={MenuProps}
+                        >
+                          {names.map((name) => (
+                            <MenuItem
+                              key={name}
+                              value={name}
+                              style={getStyles(name, personName, theme)}
+                            >
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+
+                      </FormControl>
+
+                    </Box>
 
 
-              <Box sx={{ display: "flex", marginTop: "20px" }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-multiple-name-label">Job Pipeline</InputLabel>
-                  <Select
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
-                    multiple
-                    value={personName}
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
-                  >
-                    {names.map((name) => (
-                      <MenuItem
-                        key={name}
-                        value={name}
-                        style={getStyles(name, personName, theme)}
-                      >
-                        {name}
-                      </MenuItem>
-                    ))}
-                  </Select>
+                    <Box sx={{ display: "flex", marginTop: "20px" }}>
 
-                </FormControl>
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        name="Add location"
+                        label="Add Location"
+                        type="text"
+                        value={newRow.ClientName}
+                        onChange={handleChange}
+                        fullWidth
 
-              </Box>
+                      />
+                      <Box sx={{ marginLeft: "10px" }}>
+                        <FormControlLabel control={<Checkbox defaultChecked />} label="Remote" />
+                      </Box>
+                    </Box>
 
+                    <Box sx={{ display: "flex", marginTop: "20px" }}>
 
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        name="HeadCount"
+                        label="Head count"
+                        type="text"
+                        value={newRow.ClientName}
+                        onChange={handleChange}
+                        fullWidth
 
+                      />
+                    </Box>
 
+                    <Box sx={{ display: "flex", marginTop: "20px" }}>
 
-              <Box sx={{ display: "flex", marginTop: "20px" }}>
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        name="ContactDeatials"
+                        label="Contanct Deatails"
+                        type="text"
+                        value={newRow.ClientName}
+                        onChange={handleChange}
+                        fullWidth
 
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  name="Add location"
-                  label="Add Location"
-                  type="text"
-                  value={newRow.ClientName}
-                  onChange={handleChange}
-                  fullWidth
-
-                />
-                <Box sx={{ marginLeft: "10px" }}>
-                  <FormControlLabel control={<Checkbox defaultChecked />} label="Remote" />
-                </Box>
-              </Box>
-
-              <Box sx={{ display: "flex", marginTop: "20px" }}>
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  name="HeadCount"
-                  label="Head count"
-                  type="text"
-                  value={newRow.ClientName}
-                  onChange={handleChange}
-                  fullWidth
-
-                />
-              </Box>
-
-              <Box sx={{ display: "flex", marginTop: "20px" }}>
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  name="ContactDeatials"
-                  label="Contanct Deatails"
-                  type="text"
-                  value={newRow.ClientName}
-                  onChange={handleChange}
-                  fullWidth
-
-                />
-              </Box>
+                      />
+                    </Box>
 
 
-              <Box sx={{ display: "flex", marginTop: "20px" }}>
+                    <Box sx={{ display: "flex", marginTop: "20px" }}>
 
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  name="Add Minium sarliry"
-                  label="Add Minium sarliry"
-                  type="text"
-                  value={newRow.ClientName}
-                  onChange={handleChange}
-                  fullWidth
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        name="Add Minium salary"
+                        label="Add Minium salary"
+                        type="text"
+                        value={newRow.ClientName}
+                        onChange={handleChange}
+                        fullWidth
 
-                />
-                <Box>-</Box>
-                <Box sx={{ marginLeft: "10px" }}>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    name="Add MAXIUM SARLary"
-                    label="Add MAXIUM SARLary"
-                    type="text"
-                    value={newRow.ClientName}
-                    onChange={handleChange}
-                    fullWidth
+                      />
+                      <Box>-</Box>
+                      <Box sx={{ marginLeft: "10px" }}>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          name="Add Maxim salary"
+                          label="Add Maxim salary"
+                          type="text"
+                          value={newRow.ClientName}
+                          onChange={handleChange}
+                          fullWidth
 
-                  />
-
-
-                </Box>
+                        />
 
 
-              </Box>
+                      </Box>
 
+
+                    </Box>
 
 
 
+                    <Box sx={{ display: "flex", marginTop: "20px" }}>
 
+                      <TextField
+                        autoFocus
+                        margin="dense"
+                        name="Currency"
+                        label="Currency"
+                        type="text"
+                        value={newRow.ClientName}
+                        onChange={handleChange}
+                        width={"60%"}
 
+                      />
+                      <FormControl sx={{ width: "50%", marginLeft: "30px", marginTop: "8px" }}>
+                        <InputLabel id="demo-multiple-name-label">Select Frequency</InputLabel>
+                        <Select
+                          labelId="demo-multiple-name-label"
+                          id="demo-multiple-name"
+                          multiple
+                          value={personName}
+                          onChange={handleChange}
+                          input={<OutlinedInput label="Select Frequency" />}
+                          MenuProps={MenuProps}
+                        >
+                          {names.map((name) => (
+                            <MenuItem
+                              key={name}
+                              value={name}
+                              style={getStyles(name, personName, theme)}
+                            >
+                              {name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
 
+                    </Box>
 
+                    <Box>
+                      <ClientDescription description={description} handleDescriptionChange={handleDescriptionChange} />
+                    </Box>
 
-
-
-
-
-
-
-
-
-
-
-
-              <Box sx={{ display: "flex", marginTop: "20px" }}>
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  name="Currency"
-                  label="Currency"
-                  type="text"
-                  value={newRow.ClientName}
-                  onChange={handleChange}
-                  width={"50%"}
-
-                />
-                <FormControl fullWidth>
-                  <InputLabel id="demo-multiple-name-label">Select Frequency</InputLabel>
-                  <Select
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
-                    multiple
-                    value={personName}
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
-                   
-                  >
-                    {names.map((name) => (
-                      <MenuItem
-                        key={name}
-                        value={name}
-                        style={getStyles(name, personName, theme)}
-                      >
-                        {name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
+                  </>
+                )}
 
               </Box>
 
 
 
-              <Box>
-                <ClientDescription description={description} handleDescriptionChange={handleDescriptionChange} />
-              </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </DialogContent>
 
 
-            <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
+            <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between", flexDirection: "row-reverse" }}>
 
               <Box>
                 <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleCloseTemplateForm}>Cancel</Button>
                 <Button variant="contained" onClick={handleSave}>Continue</Button>
               </Box>
-
+              <Typography
+                sx={{
+                  color: '#1976d2',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  paddingLeft: '25px',
+                  '&:hover': {
+                    color: 'darkblue',
+                    textDecoration: 'underline', // Add underline on hover
+                  },
+                }}
+                onClick={handleToggleOptions}
+              >
+                {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
+              </Typography>
             </DialogActions>
           </Dialog>
 

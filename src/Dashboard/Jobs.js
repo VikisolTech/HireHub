@@ -125,7 +125,18 @@ export default function Jobs() {
   // For example:
   const styles = getStyles();
   console.log(theme.color);
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState([
+    { id: 1, 'Position Name': 'Software Engineer', 'Job Client': 'ABC Inc.', 'Job Location': 'New York', Headcount: 5, 'Job Stage': 'Interview', 'Minimum Salary': 80000, 'Maximum Salary': 100000, 'Job Owner': 'John Doe', 'Job Team': 'Engineering', 'Job Status': 'Open', 'Job Created Date': '2023-01-15' },
+    { id: 2, 'Position Name': 'Data Analyst', 'Job Client': 'XYZ Corp.', 'Job Location': 'San Francisco', Headcount: 3, 'Job Stage': 'Screening', 'Minimum Salary': 70000, 'Maximum Salary': 90000, 'Job Owner': 'Jane Smith', 'Job Team': 'Analytics', 'Job Status': 'Open', 'Job Created Date': '2023-02-20' },
+    { id: 3, 'Position Name': 'Marketing Manager', 'Job Client': '123 Industries', 'Job Location': 'Los Angeles', Headcount: 2, 'Job Stage': 'Offer', 'Minimum Salary': 85000, 'Maximum Salary': 110000, 'Job Owner': 'Alex Johnson', 'Job Team': 'Marketing', 'Job Status': 'Open', 'Job Created Date': '2023-03-10' },
+    { id: 4, 'Position Name': 'Product Designer', 'Job Client': 'XYZ Corp.', 'Job Location': 'San Francisco', Headcount: 1, 'Job Stage': 'Final Interview', 'Minimum Salary': 90000, 'Maximum Salary': 120000, 'Job Owner': 'Emily Brown', 'Job Team': 'Design', 'Job Status': 'Open', 'Job Created Date': '2023-04-05' },
+    { id: 5, 'Position Name': 'Sales Representative', 'Job Client': 'ABC Inc.', 'Job Location': 'Chicago', Headcount: 4, 'Job Stage': 'Review', 'Minimum Salary': 60000, 'Maximum Salary': 80000, 'Job Owner': 'Michael Johnson', 'Job Team': 'Sales', 'Job Status': 'Open', 'Job Created Date': '2023-05-20' },
+    { id: 6, 'Position Name': 'HR Coordinator', 'Job Client': '456 Corp.', 'Job Location': 'Houston', Headcount: 2, 'Job Stage': 'Phone Interview', 'Minimum Salary': 55000, 'Maximum Salary': 70000, 'Job Owner': 'Sarah Clark', 'Job Team': 'HR', 'Job Status': 'Open', 'Job Created Date': '2023-06-15' },
+    { id: 7, 'Position Name': 'Finance Analyst', 'Job Client': '789 Corp.', 'Job Location': 'Boston', Headcount: 3, 'Job Stage': 'Assessment', 'Minimum Salary': 75000, 'Maximum Salary': 95000, 'Job Owner': 'David Wilson', 'Job Team': 'Finance', 'Job Status': 'Open', 'Job Created Date': '2023-07-10' },
+    { id: 8, 'Position Name': 'Customer Support Specialist', 'Job Client': 'ABC Inc.', 'Job Location': 'New York', Headcount: 2, 'Job Stage': 'Hiring', 'Minimum Salary': 50000, 'Maximum Salary': 65000, 'Job Owner': 'Emma Taylor', 'Job Team': 'Support', 'Job Status': 'Open', 'Job Created Date': '2023-08-05' },
+    { id: 9, 'Position Name': 'Quality Assurance Engineer', 'Job Client': 'XYZ Corp.', 'Job Location': 'San Francisco', Headcount: 3, 'Job Stage': 'Interview', 'Minimum Salary': 75000, 'Maximum Salary': 95000, 'Job Owner': 'James Lee', 'Job Team': 'QA', 'Job Status': 'Open', 'Job Created Date': '2023-09-20' },
+    { id: 10, 'Position Name': 'Operations Manager', 'Job Client': '456 Corp.', 'Job Location': 'Houston', Headcount: 1, 'Job Stage': 'Offer', 'Minimum Salary': 90000, 'Maximum Salary': 110000, 'Job Owner': 'Olivia Martinez', 'Job Team': 'Operations', 'Job Status': 'Open', 'Job Created Date': '2023-10-15' },
+  ]);
 
   const [newRow, setNewRow] = useState({
     id: '',
@@ -147,7 +158,6 @@ export default function Jobs() {
   };
 
   const handleSave = () => {
-    setRows([...rows, { ...newRow }]);
     setNewRow({
       id: '',
       'Position Name': '',
@@ -185,18 +195,19 @@ export default function Jobs() {
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'Position Name', headerName: 'Position Name', width: 100, editable: true },
-    { field: 'Job Client', headerName: 'Job Client', width: 100, editable: true },
-    { field: 'Job Location', headerName: 'Job Location', width: 100, editable: true },
-    { field: 'Headcount', headerName: 'Headcount', width: 100, editable: true },
-    { field: 'Job Stage', headerName: 'Job Stage', width: 100, editable: true },
-    { field: 'Minimum Salary', headerName: 'Minimum Salary', width: 100, editable: true },
-    { field: 'Maximum Salary', headerName: 'Maximum Salary', width: 100, editable: true },
-    { field: 'Job Owner', headerName: 'Job Owner', width: 100, editable: true },
-    { field: 'Job Team', headerName: 'Job Team', width: 100, editable: true },
-    { field: 'Job Status', headerName: 'Job Status', width: 100, editable: true },
+    { field: 'Position Name', headerName: 'Position Name', width: 150, editable: true },
+    { field: 'Job Client', headerName: 'Job Client', width: 150, editable: true },
+    { field: 'Job Location', headerName: 'Job Location', width: 150, editable: true },
+    { field: 'Headcount', headerName: 'Headcount', width: 150, editable: true },
+    { field: 'Job Stage', headerName: 'Job Stage', width: 150, editable: true },
+    { field: 'Minimum Salary', headerName: 'Minimum Salary', width: 150, editable: true },
+    { field: 'Maximum Salary', headerName: 'Maximum Salary', width: 150, editable: true },
+    { field: 'Job Owner', headerName: 'Job Owner', width: 150, editable: true },
+    { field: 'Job Team', headerName: 'Job Team', width: 150, editable: true },
+    { field: 'Job Status', headerName: 'Job Status', width: 150, editable: true },
     { field: 'Job Created Date', headerName: 'Job Created Date', width: 150, editable: true },
   ];
+
 
   return (
     <>
@@ -219,42 +230,22 @@ export default function Jobs() {
             + Create Job
           </Typography>
         </Button>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          pagination
-          paginationMode="server"
-          checkboxSelection
-          disableSelectionOnClick
-          autoHeight
-          style={{ border: '1px solid #ccc', borderRadius: '5px' }}
-          headerStyle={{ padding: '8px' }}
-          onEditCellChangeCommitted={(editCellChangeParams) => {
-            const { id, field, props } = editCellChangeParams;
-            handleEdit(id, field, props.value);
-          }}
-          components={{
-            NoRowsOverlay: () => (
-              <></>
-              //       <div style={{ width: '100%', textAlign: 'center', padding: '30px' }}>
-              //          <div style={{ fontSize: "20px", fontWeight: "bold" }}>You have not created any jobs yet</div>
-              //          <Button
-              //   variant="contained"
-              //   color="primary"
-              //   style={{ marginBottom: '16px', fontSize: '12px' }}
-              //   onClick={handleAdd}
-              // >
-
-              //   <Typography style={{ fontSize: '12px', fontWeight: 'normal', textTransform: 'none' }}>
-              //     + Create Job
-              //   </Typography>
-              // </Button>
-              //         <div style={{ fontSize: '14px' }}>A Job represents a new job opening, an open position or vacancy listing. Creating a job will allow you to start adding candidates to that job, publish the job onto your career page, post the job to job boards and much more.</div>
-              //       </div>
-            ),
-          }}
-        />
+        <Box sx={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
+              },
+            }}
+            pageSizeOptions={[5]}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        </Box>
         <Modal
           open={open}
           // onClose={handleClose} 
@@ -386,7 +377,7 @@ export default function Jobs() {
             <FormControl sx={{
               width: "80%",
               marginTop: "25px",
-              marginLeft: "76px",marginBottom: "20px"
+              marginLeft: "76px", marginBottom: "20px"
             }}>
               <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 Select template
@@ -548,7 +539,6 @@ export default function Jobs() {
 
 
                     <Box sx={{ display: "flex", marginTop: "20px" }}>
-
                       <TextField
                         autoFocus
                         margin="dense"

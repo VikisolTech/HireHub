@@ -64,7 +64,7 @@ export default function Board() {
       [name]: value,
     }));
   }
- 
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -76,30 +76,43 @@ export default function Board() {
       <Layout />
       <ClientNavBar />
       <Box style={{ height: 400, width: '100%', paddingLeft: '30px', paddingRight: '30px', marginTop: "20px" }}>
-      <Typography sx={{ fontSize: '30px', fontWeight: 'bold', color: 'Black', textAlign: 'center', marginTop: "20px" }}>
-        Clients
-        <Button
-          color="primary"
-          style={{
-            marginBottom: '16px',
-            marginTop: '10px',
-            paddingRight: "30px"
-          }}
-          onClick={handleOpen} // Open the dialog when the button is clicked
-        >
-          <AddIcon
+        <Typography sx={{ fontSize: '30px', fontWeight: 'bold', color: 'Black', textAlign: 'center', marginTop: "20px" }}>
+          Clients
+          <Button
+            color="primary"
             style={{
-              marginRight: '4px',
-              border: '2px solid #1976d2',
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
+              marginBottom: '16px',
+              marginTop: '10px',
+              paddingRight: "30px"
             }}
-          />
-        </Button>
-      </Typography>
+            onClick={handleOpen} // Open the dialog when the button is clicked
+          >
+            <AddIcon
+              style={{
+                marginRight: '4px',
+                border: '2px solid #1976d2',
+                borderRadius: '50%',
+                width: '20px',
+                height: '20px',
+              }}
+            />
+          </Button>
+        </Typography>
 
-      <Dialog open={open} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <Dialog open={open} sx={{ '& .MuiPaper-root.MuiPaper-elevation24.MuiPaper-rounded.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm': { width: '100%' } }}
         >
           <Box sx={{ paddingTop: "20px" }}>
             <Box display={{ display: "flex", justifyContent: "space-between" }}>
@@ -107,7 +120,7 @@ export default function Board() {
                 id="form-dialog-title"
                 sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black' }}
               >
-               Create Client
+                Create Client
 
               </DialogTitle>
               <Typography sx={{ textAlign: "center", fontSize: '18px', fontWeight: 'bold', color: 'black', marginTop: "15px", marginRight: "10px" }}>
@@ -130,37 +143,37 @@ export default function Board() {
             </Typography>
           </Box>
           <DialogContent>
-            <Box  sx={{ display: "flex",marginTop:"20px" }}>
-            <ImageUpload />
-            <TextField
-              autoFocus
-              margin="dense"
-              name="ClientName"
-              label="Client Name"
-              type="text"
-              value={newRow.ClientName}
-              onChange={handleChange}
-              fullWidth
-              sx={{ marginLeft: "30px" }}
-            />
+            <Box sx={{ display: "flex", marginTop: "20px" }}>
+              <ImageUpload />
+              <TextField
+                autoFocus
+                margin="dense"
+                name="ClientName"
+                label="Client Name"
+                type="text"
+                value={newRow.ClientName}
+                onChange={handleChange}
+                fullWidth
+                sx={{ marginLeft: "30px" }}
+              />
             </Box>
-           
+
             <Box >
               {showAdvancedOptions && (
                 <>
                   <TextField
                     label="Add Website"
                     fullWidth
-                 sx={{marginTop:"15px"}}
+                    sx={{ marginTop: "15px" }}
                   />
                   <TextField
                     label="Add Location"
                     fullWidth
-                    sx={{marginTop:"15px"}}
+                    sx={{ marginTop: "15px" }}
                   />
-                  <ClentDescription 
-                 
-                  description={description} handleDescriptionChange={handleDescriptionChange} />
+                  <ClentDescription
+
+                    description={description} handleDescriptionChange={handleDescriptionChange} />
                 </>
               )}
 
@@ -170,7 +183,11 @@ export default function Board() {
           </DialogContent>
 
 
-          <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between" }}>
+          <DialogActions sx={{ marginBottom: "10px", padding: "25px", display: "flex", justifyContent: "space-between",flexDirection:"row-reverse" }}>
+          <Box>
+              <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
+              <Button variant="contained" onClick={handleSave}>Continue</Button>
+            </Box>
             <Typography
               sx={{
                 color: '#1976d2',
@@ -186,14 +203,11 @@ export default function Board() {
             >
               {showAdvancedOptions ? "- Advanced Options" : "+ Advanced Options"}
             </Typography>
-            <Box>
-              <Button sx={{ marginRight: "12px" }} variant="outlined" onClick={handleClose}>Cancel</Button>
-              <Button variant="contained" onClick={handleSave}>Continue</Button>
-            </Box>
+          
 
           </DialogActions>
         </Dialog>
-    </Box>
+      </Box>
     </>
   );
 }

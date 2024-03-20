@@ -83,7 +83,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Layout() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [mailAnchorEl, setMailAnchorEl] = React.useState(null);
   const [notificationAnchorEl, setNotificationAnchorEl] = React.useState(null);
   const [profileAnchorEl, setProfileAnchorEl] = React.useState(null);
@@ -241,7 +241,7 @@ export default function Layout() {
             <Link to={text === 'Home' ? '/home' : `/${text.toLowerCase()}`} key={text}>
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index === 0 ? <HomeIcon /> : (index === 1 ? <EmailIcon /> : (index === 2 ? <WorkIcon /> : <GroupIcon />))}
+                  {index === 0 ? <HomeIcon style={{ color: '#1976d2' }} /> : (index === 1 ? <EmailIcon style={{ color: '#1976d2' }} /> : (index === 2 ? <WorkIcon  style={{ color: '#1976d2' }}/> : <GroupIcon  style={{ color: '#1976d2' }}/>))}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -254,7 +254,7 @@ export default function Layout() {
             <Link to={text === 'Placements' ? '/placements' : `/${text.toLowerCase()}`} key={text}>
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index === 0 ? <AssignmentIcon /> : (index === 1 ? <DraftsIcon /> : <EmailIcon />)}
+                  {index === 0 ? <AssignmentIcon  style={{ color: '#1976d2' }}/> : (index === 1 ? <DraftsIcon style={{ color: '#1976d2' }}/> : <EmailIcon  style={{ color: '#1976d2' }}/>)}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -267,7 +267,7 @@ export default function Layout() {
             <Link to={text === 'Reports' ? '/reports' : `/${text.toLowerCase()}`} key={text}>
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index === 0 ? <AssessmentIcon /> : (index === 1 ? <SettingsIcon /> : <SupervisedUserCircleIcon />)}
+                  {index === 0 ? <AssessmentIcon  style={{ color: '#1976d2' }}/> : (index === 1 ? <SettingsIcon  style={{ color: '#1976d2' }}/> : <SupervisedUserCircleIcon style={{ color: '#1976d2' }} />)}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>

@@ -37,7 +37,18 @@ export default function Clients() {
     setDescription(value);
   };
 
-  const [rows, setRows] = React.useState([]);
+  const [rows, setRows] = React.useState([
+    { id: 1, ClientName: 'ABC Inc.', jobCount: 5, ClientIndustry: 'Technology', ClientLocation: 'New York', ClientStage: 'Active', ClientOwner: 'John Doe', ClientTeam: 'Sales', ClientCreatedDate: '2023-01-15' },
+    { id: 2, ClientName: 'XYZ Corp.', jobCount: 3, ClientIndustry: 'Finance', ClientLocation: 'San Francisco', ClientStage: 'Active', ClientOwner: 'Jane Smith', ClientTeam: 'Finance', ClientCreatedDate: '2023-02-20' },
+    { id: 3, ClientName: '123 Industries', jobCount: 2, ClientIndustry: 'Manufacturing', ClientLocation: 'Los Angeles', ClientStage: 'Inactive', ClientOwner: 'Alex Johnson', ClientTeam: 'Operations', ClientCreatedDate: '2023-03-10' },
+    { id: 4, ClientName: '456 Corp.', jobCount: 4, ClientIndustry: 'Healthcare', ClientLocation: 'Houston', ClientStage: 'Active', ClientOwner: 'Emily Brown', ClientTeam: 'HR', ClientCreatedDate: '2023-04-05' },
+    { id: 5, ClientName: '789 Corp.', jobCount: 3, ClientIndustry: 'Retail', ClientLocation: 'Chicago', ClientStage: 'Active', ClientOwner: 'Michael Johnson', ClientTeam: 'Sales', ClientCreatedDate: '2023-05-20' },
+    { id: 6, ClientName: 'ABC Corp.', jobCount: 6, ClientIndustry: 'Technology', ClientLocation: 'Seattle', ClientStage: 'Active', ClientOwner: 'Sarah Clark', ClientTeam: 'Engineering', ClientCreatedDate: '2023-06-15' },
+    { id: 7, ClientName: 'XYZ Ltd.', jobCount: 2, ClientIndustry: 'Consulting', ClientLocation: 'Boston', ClientStage: 'Active', ClientOwner: 'David Wilson', ClientTeam: 'Consulting', ClientCreatedDate: '2023-07-10' },
+    { id: 8, ClientName: '123 Corp.', jobCount: 3, ClientIndustry: 'Finance', ClientLocation: 'New York', ClientStage: 'Active', ClientOwner: 'Emma Taylor', ClientTeam: 'Finance', ClientCreatedDate: '2023-08-05' },
+    { id: 9, ClientName: '456 Ltd.', jobCount: 5, ClientIndustry: 'Technology', ClientLocation: 'San Francisco', ClientStage: 'Inactive', ClientOwner: 'James Lee', ClientTeam: 'Engineering', ClientCreatedDate: '2023-09-20' },
+    { id: 10, ClientName: '789 Industries', jobCount: 2, ClientIndustry: 'Retail', ClientLocation: 'Los Angeles', ClientStage: 'Active', ClientOwner: 'Olivia Martinez', ClientTeam: 'Sales', ClientCreatedDate: '2023-10-15' },
+]);
 
   const [open, setOpen] = React.useState(false);
   const [newRow, setNewRow] = React.useState({ jobCount: '', ClientName: '', age: '' });
@@ -73,13 +84,13 @@ export default function Clients() {
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'ClientName', headerName: 'Client Name', width: 150, editable: true },
-    { field: 'jobCount', headerName: 'Job Count', width: 150, editable: true },
-    { field: 'ClientIndustry', headerName: 'Client Industry', width: 150, editable: true },
-    { field: 'ClientLocation', headerName: 'Client Location', width: 150, editable: true },
-    { field: 'ClientStage', headerName: 'Client Stage', width: 150, editable: true },
-    { field: 'ClientOwner', headerName: 'Client Owner', width: 150, editable: true },
-    { field: 'ClientTeam', headerName: 'Client Team', width: 150, editable: true },
+    { field: 'ClientName', headerName: 'Client Name', width: 200, editable: true },
+    { field: 'jobCount', headerName: 'Job Count', width: 200, editable: true },
+    { field: 'ClientIndustry', headerName: 'Client Industry', width: 200, editable: true },
+    { field: 'ClientLocation', headerName: 'Client Location', width: 200, editable: true },
+    { field: 'ClientStage', headerName: 'Client Stage', width: 200, editable: true },
+    { field: 'ClientOwner', headerName: 'Client Owner', width: 200, editable: true },
+    { field: 'ClientTeam', headerName: 'Client Team', width: 200, editable: true },
     { field: 'ClientCreatedDate', headerName: 'Client Created Date', width: 180, editable: true },
   ];
 

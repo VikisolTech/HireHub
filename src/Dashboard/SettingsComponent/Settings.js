@@ -51,12 +51,12 @@ export default function Settings() {
     const navigate = useNavigate();
 
     return (
-        <Box style={{ margin: 50 }}>
+        <Box >
             <Layout />
 
-            <Container sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <Container sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap',justifyContent: 'center',marginTop:"20px" }}>
                 {categories.map(category => (
-                    <Card key={category} sx={{ maxWidth: 400, marginBottom: '20px', display: 'flex', flexDirection: 'column', cursor: 'pointer', }}
+                    <Card key={category} sx={{ maxWidth: 450, marginBottom: '20px', display: 'flex', flexDirection: 'column', cursor: 'pointer', }}
                         onClick={() => {
                             navigate(`/settings/${category.title}`);
                         }}

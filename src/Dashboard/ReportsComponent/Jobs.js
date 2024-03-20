@@ -19,12 +19,12 @@ const pieParams = { height: 200, margin: { right: 5 } };
 const palette = ['red', 'blue', 'green'];
 export default function Jobs() {
     return (
-        <Box style={{ margin: 50, }}>
-            <Layout /><br />
+        <Box >
+            <Layout />
 
-            <Container sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', }}>
+            <Container sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap',marginTop:"20px" ,justifyContent:"center"}}>
                 {categories.map(category => (
-                    <Card key={category} sx={{ maxWidth: 400, marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
+                    <Card key={category} sx={{ maxWidth: 450, marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <PieChart
                                 colors={palette}

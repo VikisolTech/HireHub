@@ -33,17 +33,17 @@ const categories = [
 
 export default function Sales() {
     return (
-        <Box style={{ margin: 50 }}>
-            <Layout /><br />
+        <Box>
+            <Layout />
 
-            <Container>
+            <Container sx={{marginTop:"20px"}}>
                 {categories.map(category => (
                     <div key={category.maingroup}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', marginBottom: '20px' }}>
-                            <Typography variant="h5" style={{ fontWeight: 'bold' }}>{category.maingroup}</Typography><br />
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                            <Typography variant="h5" style={{ fontWeight: 'bold',textAlign:"center" }}>{category.maingroup}</Typography><br />
+                            <Box sx={{ display: 'flex', flexWrap: 'wrap' ,justifyContent:"center"}}>
                                 {category.data.map((item) => (
-                                    <Card key={item.title} sx={{ maxWidth: 300, height: '250px', marginBottom: '20px', marginRight: '20px', whiteSpace: 'collapse' }}>
+                                    <Card key={item.title} sx={{ maxWidth: 350, height: '250px', marginBottom: '20px', marginRight: '20px', whiteSpace: 'collapse' }}>
                                         <BarChart
                                             xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
                                             series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}

@@ -9,6 +9,7 @@ import {
     Button,
     Box,
     IconButton,
+    Divider,
 } from '@mui/material';
 import Layout from '../Layout';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -21,11 +22,11 @@ import NotificationsOffSharpIcon from '@mui/icons-material/NotificationsOffSharp
 import DraftsSharpIcon from '@mui/icons-material/DraftsSharp';
 const categories = [
     {
-        "title": "Account & Users",
+        "title": "Account-and-Users",
         "text": "Manage your account details, users, groups and guests."
     },
     {
-        "title": "Data Management",
+        "title": "Data-Management",
         "text": "Track GDPR consent and view logs. Import candidates, jobs and more."
     },
     {
@@ -70,29 +71,28 @@ export default function AdministartionList() {
         <Box >
             <Layout />
 
-            <Container sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap',justifyContent: 'center',marginTop:"20px" }}>
+            <Container sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: "20px" }}>
                 {categories.map(category => (
-                    <Card key={category} sx={{ width: 450, marginBottom: '20px', display: 'flex', flexDirection: 'column', cursor: 'pointer', }}
-                        onClick={() => {
-                            navigate(`/settings/${category.title}`);
-                        }}
+                    <Card key={category} sx={{ width: 450, marginBottom: '20px', display: 'flex', flexDirection: 'column', }}
+
                     >
-                        <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: "space-around" }}>
-                            {/* {React.cloneElement(category.icon, { sx: { fontSize: 45, margin: 5 } })} */}
-                            <CardContent sx={{ width: '60%', padding: '16px' }}>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {category.title}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {category.text}
-                                </Typography>
-                            </CardContent>
-                            <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <IconButton size="small">
-                                    <ArrowForwardIcon />
-                                </IconButton>
-                            </CardActions>
-                        </Box>
+                        <CardContent sx={{ width: '60%', padding: '16px' }}>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {category.title}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {category.text}
+                            </Typography>
+                        </CardContent>
+                        <Divider />
+                        <CardActions sx={{ cursor: 'pointer' }} >
+                            <Button size="small"
+                                sx={{ fontWeight: 'bold' }}
+                                onClick={() => {
+                                    navigate(`/Administration/${category.title}`);
+                                }}
+                            >Learn More</Button>
+                        </CardActions>
                     </Card>
                 ))}
             </Container>

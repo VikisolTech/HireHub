@@ -16,7 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import WorkIcon from '@mui/icons-material/Work';
 import GroupIcon from '@mui/icons-material/Group';
@@ -87,7 +87,7 @@ export default function Layout() {
   const [mailAnchorEl, setMailAnchorEl] = React.useState(null);
   const [notificationAnchorEl, setNotificationAnchorEl] = React.useState(null);
   const [profileAnchorEl, setProfileAnchorEl] = React.useState(null);
-
+  const navigate = useNavigate();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -213,6 +213,9 @@ export default function Layout() {
           >
             <MenuItem onClick={handleProfileClose}>Profile</MenuItem>
             <MenuItem onClick={handleProfileClose}>My account</MenuItem>
+            <MenuItem onClick={() => {
+              navigate(`/`);
+            }}>Logout</MenuItem>
           </Popover>
         </Toolbar>
       </AppBar>

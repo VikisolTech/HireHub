@@ -40,11 +40,11 @@ const categories = [
         'text': 'Manage your in-app and email notifications.',
         'icon': <NotificationsOffSharpIcon />
     },
-    {
-        'title': "Email Settings",
-        'text': 'Manage your email settings and templates.',
-        'icon': <DraftsSharpIcon />
-    }
+    // {
+    //     'title': "Email Settings",
+    //     'text': 'Manage your email settings and templates.',
+    //     'icon': <DraftsSharpIcon />
+    // }
 ];
 
 export default function Settings() {

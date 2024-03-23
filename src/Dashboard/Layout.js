@@ -141,15 +141,15 @@ export default function Layout() {
           <Search />
 
 
-          <IconButton
+          {/* <IconButton
             color="inherit"
             onClick={handleMailClick}
           >
             <Badge badgeContent={4} color="error">
               <EmailIcon />
             </Badge>
-          </IconButton>
-          <Popover
+          </IconButton> */}
+          {/* <Popover
             open={Boolean(mailAnchorEl)}
             anchorEl={mailAnchorEl}
             onClose={handleMailClose}
@@ -171,7 +171,7 @@ export default function Layout() {
             <Badge badgeContent={17} color="error">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
           <Popover
             open={Boolean(notificationAnchorEl)}
             anchorEl={notificationAnchorEl}
@@ -212,7 +212,9 @@ export default function Layout() {
             }}
           >
             <MenuItem onClick={handleProfileClose}>Profile</MenuItem>
-            <MenuItem onClick={handleProfileClose}>My account</MenuItem>
+            <MenuItem onClick={() => {
+              navigate(`/singup`);
+            }}>My account</MenuItem>
             <MenuItem onClick={() => {
               navigate(`/`);
             }}>Logout</MenuItem>

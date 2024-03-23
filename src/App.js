@@ -22,6 +22,11 @@ import Settings from './Dashboard/SettingsComponent/Settings';
 import Profile from './Dashboard/SettingsComponent/Profile';
 import Preferences from './Dashboard/SettingsComponent/Preferences';
 import AdministartionList from './Dashboard/Administration/AdministrationList';
+import AccountAndUsers from './Dashboard/Administration/AccountAndUsers';
+import Account from './Dashboard/Administration/Account';
+import Users from './Dashboard/Administration/Users';
+import Guests from './Dashboard/Administration/Guests';
+import Datamanagement from './Dashboard/Administration/DataManagement';
 // anand garikapati
 function App() {
   return (
@@ -49,7 +54,15 @@ function App() {
           <Route path='/settings' element={<Settings />} />
           <Route path='/settings/Profile' element={<Profile />} />
           <Route path='/settings/Preferences' element={<Preferences />} />
+
           <Route path='/Administration' element={<AdministartionList />} />
+          <Route path='/Administration/Account-and-Users' element={<AccountAndUsers />} />  
+          <Route path='/Administration/Account-and-Users/Account' element={<Account />} />
+          <Route path='/Administration/Account-and-Users/Users' element={<Users />} />
+          <Route path='/Administration/Account-and-Users/Guests' element={<Guests />} />
+
+          <Route path='/Administration/Data-Management' element={<Datamanagement />} />  
+
 
           <Route path='board' element={<Board />} />
         </Routes>
